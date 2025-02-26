@@ -1,6 +1,6 @@
 class Calculator
     def self.add(str)
-        arr = str.split(",").map(&:to_i)
+        arr = str.split(/[\n,]/).map(&:to_i)
         sum = 0
         for i in arr
             sum = sum + i
