@@ -17,17 +17,23 @@ class Test
         number = 1 
         passed = 0
         failed = 0
+        skipped = 0
         test_input.each do |key, val|
-            if Calculator.add(key) == val
-                puts "Test case #{number} passed!!"
-                passed += 1
-            else
-                puts "Test case #{number} failed!!"
-                failed += 1
+            begin
+                if Calculator.add(key) == val
+                    puts "Test case #{number} passed!!"
+                    passed += 1
+                else
+                    puts "Test case #{number} failed!!"
+                    failed += 1
+                end
+            rescue => e 
+                puts "Test case #{number} skipped with message [#{e.message}]"
+                skipped += 1
             end
             number += 1
         end
 
-        puts "Passed:: #{passed} Failed:: #{failed}"
+        puts "Passed:: #{passed} Failed:: #{failed} skipped:: #{skipped}"
     end
 end

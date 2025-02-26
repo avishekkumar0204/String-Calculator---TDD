@@ -10,7 +10,12 @@ class Calculator
         end
 
         arr = str.split(/#{delimiter}/).map(&:to_i)
-        
+
+        negatives = arr.select { |n| n < 0 }
+        if negatives.any?
+            raise "negative numbers not allowed #{negatives.join(',')}"
+        end
+
         sum = 0
         for i in arr
             sum = sum + i
